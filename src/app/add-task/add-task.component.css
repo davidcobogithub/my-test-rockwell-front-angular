@@ -1,0 +1,60 @@
+.header-section{
+    background-color: #7D3C98;
+    color: white;
+}
+
+.header-section:hover{
+    color:white;
+}
+
+.my-content{
+    padding-top: 15px;
+}
+
+.boton{
+    background-color: #10498F; color:white
+}
+
+.boton:focus{
+    background-color: #1A237E;
+}
+
+.background-my-color{
+    border-style: solid;
+    background-color: #7D3C98;
+    height: 110px;
+    width: 180px;
+    border-radius: 10px;
+    margin-left: 40px;
+    margin-top: 20px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.my-border{
+    border-style: solid;
+}
+
+li {
+    display: inline;
+}
+
+.my-bold{
+    font-weight: bold;
+}
+
+.my-green{
+    color:green;
+}
+
+.my-red{
+    color: red;
+}
+
+.my-white-spaces{
+    white-space: normal;
+    overflow-x: hidden;
+}

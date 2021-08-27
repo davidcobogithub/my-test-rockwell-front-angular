@@ -1,0 +1,220 @@
+<div class="col-lg-10 offset-lg-1 col-md-10 offset-md-1 col-sm-11 my-content">
+
+  <div class="card">
+    <div class="card-header header-section">
+      <i class="fas fa-thumbtack"></i> Add Task
+    </div>
+
+    <form id="addtaskForm" autocomplete="off">
+
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-11 col-sm-11" style="margin-left: auto;margin-right: auto;">
+            <fieldset class="col-sm-12 scheduler-border">
+              <div class="row form-group">
+                <div class="col-lg-3 col-md-5 col-sm-12">
+                  <span class="col-form-label">Name*</span>
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-12">
+
+                  <input [(ngModel)]="name" type="text" id="name" name="name" class="form-control" maxlength="60" />
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-lg-3 col-md-5 col-sm-12">
+                  <span class="col-form-label">URL*</span>
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-12">
+
+                  <input [(ngModel)]="url" type="url" id="url" name="url" class="form-control" list="defaultURLs" placeholder="https://example.com"
+                  pattern="http.*" />
+
+                  <datalist id="defaultURLs">
+                    <option value="https://www.youtube.com/" label="Youtube">
+                    <option value="http://www.google.com/" label="Google">
+                    <option value="http://www.microsoft.com/" label="Microsoft">
+                    <option value="https://www.mozilla.org/" label="Mozilla">
+                    <option value="http://w3.org/" label="W3C">
+                  </datalist>
+
+                </div>
+              </div>
+
+
+              <div class="row form-group">
+                <div class="col-lg-3 col-md-5 col-sm-12">
+                  <span class="col-form-label">Action*</span>
+                </div>
+                <div class="col-lg-8 col-md-7 col-sm-12">
+
+                  <select name="typetaskaction" id="typetaskaction" [(ngModel)]="typetaskaction"
+                    class="form-control form-control-line">
+                    <option value="" disabled>Enter type task</option>
+                    <option value="Ping URL">Ping URL</option>
+                    <option value="Scrape Body">Scrape Body</option>
+                    <option value="Scrape Headers">Scrape Headers</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-lg-3 col-md-5 col-sm-12">
+                  <input type="radio" id="cron" name="mycron" value="cron" checked (click)="radioClick()">
+                  <label for="cron">&nbsp;Cron Expression*</label>
+                  <small id="" class="form-text text-muted">
+                    OR
+                  </small>
+                </div>
+                <div class="col-lg-6 col-md-7 col-sm-12">
+
+                  <input [(ngModel)]="cronexp" type="text" id="cronexp" name="cronexp" class="form-control"
+                    placeholder="* * * * * *" [disabled]="clickCronInput" />
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-lg-3 col-md-5 col-sm-12">
+                  <input type="radio" id="time" name="mycron" value="time" (click)="radioClick()">
+                  <label for="time">&nbsp;Time Range*</label>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-12">
+
+                  <input [(ngModel)]="timerange" type="number" id="timerange" name="timerange" class="form-control"
+                    min="0" [disabled]="clickTimeInput" />
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-12">
+
+                  <select name="typetime" id="typetime" class="form-control form-control-line"
+                    [disabled]="clickTimeInput" [(ngModel)]="typetime">
+                    <option value="" disabled>Time</option>
+                    <option value="Seconds">Seconds</option>
+                    <option value="Minutes">Minutes</option>
+                    <option value="Hours">Hours</option>
+                    <option value="Days">Days</option>
+                  </select>
+                </div>
+              </div>
+
+            </fieldset>
+          </div>
+          <div id="message" class="col-md-12 text-center" style="font-weight: bold;">
+          </div>
+        </div>
+        <br />
+        <div class="text-center footer-seccion">
+          <button (click)="clearFilter()" type="button" id="clearButton"
+            class="btn btn-outline-secondary boton">Clear</button>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <button (click)="save();" type="button" class="btn btn-outline-secondary boton" id="saveButton">Save</button>
+
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+  <br />
+
+  <div class="card">
+    <div class="card-header header-section">
+      <i class="fas fa-tasks"></i> All Tasks
+    </div>
+
+    <form id="myform" autocomplete="off">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-11 col-md-11 col-sm-12" style="margin-left: auto;margin-right: auto; ">
+            <ul>
+              <div class="row">
+
+                <li *ngFor="let task of tasks; let i = index">
+                  <ng-template #mymodal let-modal>
+                    <div class="modal-header">
+                      <h4 class="modal-title" id="modal-basic-title">Task Modal</h4>
+                      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <div className="row alin-left">
+                        <div className="col-lg-12 col-md-12 col-sm-12">
+                          <span class="my-bold">Name:</span> {{ task.name }}
+                        </div>
+                      </div>
+                      <div className="row alin-left">
+                        <div className="col-lg-12 col-md-12 col-sm-12">
+                          <span class="my-bold">URL:</span> {{ task.url }}
+                        </div>
+                      </div>
+                      <div className="row alin-left">
+                        <div className="col-lg-12 col-md-12 col-sm-12">
+                          <span class="my-bold">Action:</span> {{ task.typetaskaction }}
+                        </div>
+                      </div>
+                      <div className="row alin-left" *ngIf="(task.cronexp.length > 0)">
+                        <div className="col-lg-12 col-md-12 col-sm-12">
+                          <span class="my-bold">Cron Expression:</span> {{ task.cronexp }}
+                        </div>
+                      </div>
+                      <div className="row alin-left" *ngIf="(task.cronexp.length <= 0)">
+                        <div className="col-lg-12 col-md-12 col-sm-12">
+                          <span class="my-bold">Time Range:</span> {{ task.timerange }}&nbsp;{{task.typetime}}
+                        </div>
+                      </div>
+                      <div className="row alin-left">
+                        <div className="col-lg-12 col-md-12 col-sm-12">
+                          <span class="my-bold">Date Execution:</span> {{ task.dateExecution }}
+                        </div>
+                      </div>
+
+                      <div className="row alin-left">
+                        <div className="col-lg-12 col-md-12 col-sm-12">
+                          <span class="my-bold">Status:</span> <span
+                            [ngClass]="{'my-green': task.status == '200', 'my-red': task.status != '200'}"> {{
+                            task.status }}</span>
+                        </div>
+                      </div>
+
+                      <div className="row alin-left"
+                        *ngIf="(task.typetaskaction == 'Scrape Body' || task.typetaskaction == 'Scrape Headers')">
+                        <div className="col-lg-12 col-md-12 col-sm-12">
+                          <span class="my-bold">Response:</span>
+                        </div>
+                        <div className="col-lg-12 col-md-12 col-sm-12">
+                          <textarea class="form-control my-white-spaces" id="txtArea" rows="7" disabled >
+                            {{ task.response }}
+                          </textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+                    </div>
+                  </ng-template>
+
+                  <div class="background-my-color" [id]="'modalTask' + i" (click)="open(mymodal)" title="Task Details">
+                    <div className="row">
+                      <span class="my-bold">Name:</span> {{ task.name }}
+                    </div>
+                    <br />
+                    <div className="row">
+                      <span class="my-bold">Next Execution:</span>
+                    </div>
+                    <div className="row">
+                      {{ task.dateExecution }}
+                    </div>
+                  </div>
+                </li>
+              </div>
+            </ul>
+          </div>
+          <div id="mymessage" class="col-md-12 text-center" style="font-weight: bold;">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
