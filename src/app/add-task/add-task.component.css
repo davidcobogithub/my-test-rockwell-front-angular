@@ -1,5 +1,5 @@
 .header-section{
-    background-color: #7D3C98;
+    background-color: #cd163f ;
     color: white;
 }
 
@@ -12,19 +12,21 @@
 }
 
 .boton{
-    background-color: #10498F; color:white
+    background-color: #CD163F; color:white;
+    border:  red;
 }
 
-.boton:focus{
-    background-color: #1A237E;
+.boton:hover{
+    background-color: #FF5500;
 }
 
 .background-my-color{
     border-style: solid;
-    background-color: #7D3C98;
+    background-color: #F7BE81;
     height: 110px;
     width: 180px;
     border-radius: 10px;
+    border-color:  #FF5500;
     margin-left: 40px;
     margin-top: 20px;
     text-align: center;

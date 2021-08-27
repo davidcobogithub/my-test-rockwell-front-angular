@@ -3,3 +3,12 @@
 .my-content{
     padding-top: 15px;
 }
+
+.footer-section{
+    background-color: #8f0f2c ;
+    color: white;
+}
+
+.my-bold{
+    font-weight: bold;
+}

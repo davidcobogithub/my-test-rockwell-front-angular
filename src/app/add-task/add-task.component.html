@@ -59,8 +59,8 @@
 
               <div class="row form-group">
                 <div class="col-lg-3 col-md-5 col-sm-12">
-                  <input type="radio" id="cron" name="mycron" value="cron" checked (click)="radioClick()">
-                  <label for="cron">&nbsp;Cron Expression*</label>
+                  <input type="radio" id="cron" name="mycron" value="cron" checked (click)="radioClick()" title="it'll run each time"> 
+                  <label for="cron" title="it'll run each time">&nbsp;Cron Expression*</label>
                   <small id="" class="form-text text-muted">
                     OR
                   </small>
@@ -68,25 +68,25 @@
                 <div class="col-lg-6 col-md-7 col-sm-12">
 
                   <input [(ngModel)]="cronexp" type="text" id="cronexp" name="cronexp" class="form-control"
-                    placeholder="* * * * * *" [disabled]="clickCronInput" />
+                    placeholder="* * * * * *" [disabled]="clickCronInput" title="it'll run each time"/>
                 </div>
               </div>
 
               <div class="row form-group">
                 <div class="col-lg-3 col-md-5 col-sm-12">
-                  <input type="radio" id="time" name="mycron" value="time" (click)="radioClick()">
-                  <label for="time">&nbsp;Time Range*</label>
+                  <input type="radio" id="time" name="mycron" value="time" (click)="radioClick()" title="it'll run each time">
+                  <label for="time" title="it'll run each time">&nbsp;Time Range*</label>
                 </div>
 
                 <div class="col-lg-3 col-md-3 col-sm-12">
 
                   <input [(ngModel)]="timerange" type="number" id="timerange" name="timerange" class="form-control"
-                    min="0" [disabled]="clickTimeInput" />
+                    min="0" [disabled]="clickTimeInput" title="it'll run each time"/>
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-12">
 
                   <select name="typetime" id="typetime" class="form-control form-control-line"
-                    [disabled]="clickTimeInput" [(ngModel)]="typetime">
+                    [disabled]="clickTimeInput" [(ngModel)]="typetime" title="it'll run each time">
                     <option value="" disabled>Time</option>
                     <option value="Seconds">Seconds</option>
                     <option value="Minutes">Minutes</option>
